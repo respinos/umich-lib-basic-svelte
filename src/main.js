@@ -18,9 +18,11 @@ for(var i = 0; i < possibles.length; i++) {
 		if ( components[component] === undefined ) {
 			components[component] = [];
 		}
+		const frag = document.createDocumentFragment();
 		components[component].push(new registered[component]({
-			target: possible
+			target: frag
 		}));
+		possible.parentNode.replaceChild(frag, possible);
 	}
 }
 

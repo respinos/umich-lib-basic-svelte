@@ -46,7 +46,8 @@
   )
 
   styles.container = css({
-    background: COLORS.blue[100]
+    background: COLORS.blue[100],
+    width: '100%'
   });
 
   styles.content = css({
@@ -176,6 +177,8 @@
       });
 
   onMount(function() {
+    // container.parentNode.setAttribute('aria-label', "View our other U-M Library sites");
+    // container.parentNode.classList.add(styles.container);
   });
 
 </script>
@@ -184,7 +187,7 @@
 </style>
 
 <header class="{styles.container}" aria-label="View our other U-M Library sites" bind:this={container}>
-  <div class="{Margins}">
+  <div class="{Margins}" bind:this={container}>
     <div class="{styles.content}">
       <div class="{LargeScreen}">
         <a class="{linkss.special}" href="https://www.lib.umich.edu/">University of Michigan Library</a>
