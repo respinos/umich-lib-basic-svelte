@@ -2,7 +2,13 @@ import UniversalHeader from './components/universal-header/index.svelte';
 import Chat from './components/chat/index.svelte';
 import { GlobalStyleSheet } from './shared/styles';
 
+window.benching = window.benching || [];
+window.benching.push(-1);
+window.benching.push(performance.now());
+
 GlobalStyleSheet();
+
+window.benching.push(performance.now());
 
 var registered = {};
 registered['universal-header'] = UniversalHeader;
@@ -25,6 +31,13 @@ for(var i = 0; i < possibles.length; i++) {
 		possible.parentNode.replaceChild(frag, possible);
 	}
 }
+
+window.benching.push(performance.now());
+
+fetch(`https://quod.lib.umich.edu/1x1.json?${window.benching.join(',')}`,{
+	mode: 'no-cors',
+	cache: 'no-cache'
+})
 
 // export {UniversalHeader};
 export {registered};
